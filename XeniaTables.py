@@ -1,16 +1,14 @@
 import logging.config
 
-from geoalchemy2 import Geometry as PGGeometry
 from sqlalchemy import CHAR, Column, DateTime, Float, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy.types import TEXT, TypeDecorator
-
+from geoalchemy2 import Geometry
 logger = logging.getLogger(__name__)
 
 Base = declarative_base()
 
-
+'''
 class Geometry(TypeDecorator):
     # Underlying impl is TEXT (for SQLite fallback)
     impl = TEXT
@@ -47,7 +45,7 @@ class Geometry(TypeDecorator):
             from shapely import wkt
             return wkt.loads(value)
         return value
-
+'''
 
 
 class organization(Base):
