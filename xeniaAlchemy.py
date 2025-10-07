@@ -63,13 +63,11 @@ class xeniaAlchemy(object):
         org_id = self.organizationExists(name_parts[0])
         row_entry_date = datetime.now()
         if org_id is None:
-            if self.logger:
-                self.logger.debug("Adding organization name: %s" % (name_parts[0]))
+            self.logger.debug("Adding organization name: %s" % (name_parts[0]))
             org_id = self.addOrganization(row_entry_date, name_parts[0])
 
         if self.platformExists(platform_name) is None:
-            if self.logger:
-                self.logger.debug("Adding platform handle: %s" % (platform_name))
+            self.logger.debug("Adding platform handle: %s" % (platform_name))
             plat_rec = platform(row_entry_date=row_entry_date,
                                 organization_id=org_id,
                                 platform_handle=platform_name,
@@ -88,9 +86,8 @@ class xeniaAlchemy(object):
                                      obs_info['s_order'],
                                      None,
                                      True) is None:
-                    if self.logger:
-                        self.logger.error("Error platform: %s sensor: %s(%s) not added" % (
-                            platform_name, obs_info['obs_name'], obs_info['uom_name']))
+                    self.logger.error("Error platform: %s sensor: %s(%s) not added" % (
+                        platform_name, obs_info['obs_name'], obs_info['uom_name']))
             except Exception as e:
                 self.logger.exception(e)
 
